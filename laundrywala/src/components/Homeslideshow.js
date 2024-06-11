@@ -9,32 +9,144 @@ import {
   Container,
   Row,
 } from "reactstrap";
+import styled, { keyframes, css } from "styled-components";
 
 const items = [
   {
-    src: require("../images/undraw_Online_shopping_re_k1sv.jpg"),
+    src: require("../images/1716555978595.webp"),
   },
   {
-    src: require("../images/undraw_add_to_cart_vkjp.jpg"),
+    src: require("../images/1716555680392.jpg"),
   },
   {
-    src: require("../images/undraw_web_shopping_dd4l.jpg"),
+    src: require("../images/1716555680373.jpg"),
   },
   {
-    src: require("../images/undraw_On_the_way_re_swjt.jpg"),
+    src: require("../images/1716555680353.jpg"),
   },
   {
-    src: require("../images/undraw_window_shopping_b96y.jpg"),
+    src: require("../images/1716815586898.png"),
   },
   {
-    src: require("../images/undraw_takeout_boxes_ap54.jpg"),
+    src: require("../images/1716815586860.webp"),
   },
   {
-    src: require("../images/undraw_meet_the_team_e5b7.jpg"),
+    src: require("../images/1716815586877.jpg"),
   },
 ];
 
-const Homeslideshow = () => {
+const Section = styled.section`
+
+background: linear-gradient(89.2deg, rgb(191, 241, 236) 22.3%, rgb(109, 192, 236) 84.1%);
+  padding: 50px 0;
+  display: flex;
+  min-height: 87vh;
+`;
+
+const bubbleAnimation = keyframes`
+  0% {
+    transform: translateY(0) translateX(0);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-1000px) translateX(100px);
+    opacity: 0;
+  }
+`;
+
+const bubbleSideAnimation = keyframes`
+  0% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(1000px);
+    opacity: 0;
+  }
+`;
+
+const Bubble = styled.div`
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  background-color: rgba(255, 255, 255, 0.5);
+  border-radius: 50%;
+  animation: ${bubbleAnimation} 20s infinite;
+  opacity: 0;
+
+  &:nth-child(odd) {
+    width: 60px;
+    height: 60px;
+    animation-duration: 25s;
+  }
+
+  &:nth-child(even) {
+    animation-duration: 15s;
+  }
+`;
+
+const BubbleSide = styled(Bubble)`
+  animation: ${bubbleSideAnimation} 20s infinite;
+
+  &:nth-child(odd) {
+    animation-duration: 25s;
+  }
+
+  &:nth-child(even) {
+    animation-duration: 15s;
+  }
+`;
+const SlideText = styled.div`
+  margin-top: 100px;
+  color: #fff;
+  text-align: left; /* Align text to the left */
+`;
+
+const SlideTitle = styled.h2`
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: #fff;
+  margin-bottom: 20px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4); /* Add text shadow for a premium look */
+  .text-title {
+    color: #E6E6FA;
+  }
+`;
+
+const SlideDescription = styled.p`
+  font-size: 1.2rem;
+  color: black;
+  padding-right: 20px; /* Add padding for better spacing */
+`;
+
+const SlideButtonLink = styled(Link)`
+  text-decoration: none; /* Remove underline from link */
+`;
+
+const SlideButton = styled(Button)`
+  background-color: blue; /* Dark blue color */
+  border: none;
+  border-radius: 5px;
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin: 20px auto 0;
+  display: block;
+
+  &:hover {
+    background-color: #004080; /* Slightly darker blue on hover */
+    transform: scale(1.05); /* Slightly enlarge the button on hover */
+  }
+`;
+
+const CarouselImage = styled.img`
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  max-height: 500px; /* Ensures all images are the same height */
+  object-fit: cover;
+  width: 100%;
+`;
+
+const HomeSlideshow = () => {
   const [activeIndex, setActiveIndex] = React.useState(0);
   const [animating, setAnimating] = React.useState(false);
 
@@ -60,53 +172,46 @@ const Homeslideshow = () => {
   };
 
   return (
-    <section id="Homeslideshow" className="mt-5">
+    <Section id="Homeslideshow">
       <Container>
         <Row>
-          <Col md={7} className="mt-5">
-            <h2>
-              Best <span className="text-title"> Wash and Iron service </span>{" "}
-              <br /> in your doorstep...
-            </h2>
-            <p className="text-justify my-3">
-              LaundryWala is an Online Laundry Platform with the latest
-              technology in washing, dry cleaning and laundry. Our services
-              combine our expertise and experience acquired over a period of
-              time to provide you with clean laundry in the shortest possible
-              turnaround time.
-            </p>
-            <Link to="/services">
-              <Button className="nav-name my-4" color="primary">
-                View Services
-              </Button>
-            </Link>
+          <Col md={7}>
+            <SlideText>
+              <SlideTitle>
+                Best <span className="text-title">Wash and Iron Service</span> <br /> at Your Doorstep...
+              </SlideTitle>
+              <SlideDescription>
+                <b>
+                LaundryWala is an Online Laundry Platform with the latest technology in washing, dry cleaning, and laundry. Our services combine our expertise and experience acquired over a period of time to provide you with clean laundry in the shortest possible turnaround time.
+              </b>
+              </SlideDescription>
+              <SlideButtonLink to="/services">
+                <SlideButton color="primary">View Services</SlideButton>
+              </SlideButtonLink>
+            </SlideText>
           </Col>
 
-          <Col md={5}>
-            <Carousel activeIndex={activeIndex} next={next} previous={previous}>
+          <Col md={5} className="d-flex align-items-center">
+            <Carousel
+              activeIndex={activeIndex}
+              next={next}
+              previous={previous}
+              interval={3000}  // Set interval to 3 seconds for automatic transition
+            >
               <CarouselIndicators
                 items={items}
                 activeIndex={activeIndex}
                 onClickHandler={goToIndex}
               />
-              {items.map((item) => {
-                return (
-                  <CarouselItem
-                    onExiting={onExiting}
-                    onExited={onExited}
-                    key={item.src}
-                  >
-                    <img
-                      src={item.src}
-                      alt={item.altText}
-                      height="300px"
-                      width="400px"
-                      className="p-5"
-                    />
-                  </CarouselItem>
-                );
-              })}
-
+              {items.map((item, index) => (
+                <CarouselItem
+                  key={index}
+                  onExiting={onExiting}
+                  onExited={onExited}
+                >
+                  <CarouselImage src={item.src} alt={item.altText} className="img-fluid" />
+                </CarouselItem>
+              ))}
               <a
                 className="carousel-control-prev"
                 data-slide="prev"
@@ -135,8 +240,14 @@ const Homeslideshow = () => {
           </Col>
         </Row>
       </Container>
-    </section>
+      {[...Array(20)].map((_, i) => (
+        <Bubble key={i} style={{ left: `${Math.random() * 100}%`, animationDelay: `${Math.random() * 20}s` }} />
+      ))}
+      {[...Array(20)].map((_, i) => (
+        <BubbleSide key={i} style={{ bottom: `${Math.random() * 100}%`, animationDelay: `${Math.random() * 20}s` }} />
+      ))}
+    </Section>
   );
 };
 
-export default Homeslideshow;
+export default HomeSlideshow;

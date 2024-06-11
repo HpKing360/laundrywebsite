@@ -30,7 +30,7 @@ export default function Navbar() {
               <Link to="/">
                 <img
                   src={"default/logo.png"}
-                  alt={"LAUNDRYWALA"}
+                  alt={"Spin Cycles"}
                   className="ml-4"
                 />
               </Link>

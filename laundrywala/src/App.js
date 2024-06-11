@@ -12,6 +12,7 @@ import Order from "./components/Order";
 import Services from "./components/Services";
 import WashAndFold from "./components/WashAndFold";
 import WashAndIron from "./components/WashAndIron";
+import WashAndSteam from "./components/WashAndSteam";
 import { CartProvider } from "react-use-cart";
 import Dashboard from "./components/UserDashboard/Dashboard";
 import Settings from "./components/UserDashboard/Settings";
@@ -26,6 +27,8 @@ import DeliveryProfilePic from "./components/DeliveryDashboard/ProfilePic";
 import DeliveryChangePwd from "./components/DeliveryDashboard/ChangePwd";
 import Map from "./components/map/Map";
 import ScrollToTop from "./components/ScrollToTop";
+import PriceList from "./components/PriceList";
+
 
 function App() {
   return (
@@ -47,6 +50,9 @@ function App() {
               path="/EmergencyService"
               element={<EmergencyService />}
             />
+            <Route exact path="/WashAndSteam" element={<WashAndSteam />} />
+            <Route path="/PriceList" element={<PriceList />} /> 
+
             <Route exact path="/order" element={<Order />} />
             <Route exact path="/map" element={<Map />} />
             <Route exact path="/customer/settings/" element={<Settings />} />

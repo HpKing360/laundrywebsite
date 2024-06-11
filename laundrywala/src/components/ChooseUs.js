@@ -1,91 +1,159 @@
-import {
-  faLeaf,
-  faLiraSign,
-  faMedal,
-  faMoneyBillAlt,
-  faSoap,
-  faTruck,
-} from "@fortawesome/free-solid-svg-icons";
+import React, { useState } from "react";
+import { Card, CardBody, CardHeader, CardText, CardTitle, Col, Container, Row } from "reactstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import React from "react";
-import {
-  Card,
-  CardBody,
-  CardHeader,
-  CardText,
-  CardTitle,
-  Col,
-  Container,
-  Row,
-} from "reactstrap";
+import { faLeaf, faLiraSign, faMedal, faMoneyBillAlt, faSoap, faTruck } from "@fortawesome/free-solid-svg-icons";
+import styled, { keyframes } from "styled-components";
 
 const details = [
   {
     src: <FontAwesomeIcon icon={faTruck} />,
-    name: "Free Pickup & Delivery ",
-    title:
-      "Doorstep Pickup and Your clothes will be delivered at your doorstep on time and as fresh as daisy.",
+    name: "Free Pickup & Delivery",
+    title: "Doorstep Pickup and Your clothes will be delivered at your doorstep on time and as fresh as daisy.",
   },
   {
     src: <FontAwesomeIcon icon={faSoap} />,
     name: "Hygienic",
-    title:
-      "Your clothes are hygienically washed so they are germ free and clean. The way you think about laundry!",
+    title: "Your clothes are hygienically washed so they are germ free and clean. The way you think about laundry!",
   },
   {
     src: <FontAwesomeIcon icon={faLiraSign} />,
     name: "Affordable",
-    title:
-      "No Additional Cost! You pay just as same as the price set by your selected laundry vendor.",
+    title: "No Additional Cost! You pay just as same as the price set by your selected laundry vendor.",
   },
   {
     src: <FontAwesomeIcon icon={faLeaf} />,
     name: "Eco Friendly",
-    title:
-      "Local residents love on our reliable laundry & dry cleaning detailss for the fast, accurate, top quality results.",
+    title: "Local residents love on our reliable laundry & dry cleaning details for the fast, accurate, top-quality results.",
   },
   {
     src: <FontAwesomeIcon icon={faMedal} />,
     name: "Quality Guarantee",
-    title:
-      "We are professionals in the laundry business, which means we always up to date on the latest technologies.",
+    title: "We are professionals in the laundry business, which means we are always up to date on the latest technologies.",
   },
   {
     src: <FontAwesomeIcon icon={faMoneyBillAlt} />,
     name: "Transparent Pricing",
-    title:
-      "In Affordable price our details in the same budget or less than any other local laundry details near you.",
+    title: "In Affordable price our details in the same budget or less than any other local laundry details near you.",
   },
 ];
 
+const fadeIn = keyframes`
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+`;
+
+const bounce = keyframes`
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-10px);
+  }
+  60% {
+    transform: translateY(-5px);
+  }
+`;
+
+const Section = styled.section`
+  padding: 50px 0;
+  background: linear-gradient(109.5deg, rgb(13, 11, 136) 9.4%, rgb(86, 255, 248) 78.4%);
+  animation: ${fadeIn} 1s ease-in-out;
+`;
+
+const Header = styled.div`
+  text-align: center;
+  margin-bottom: 50px;
+  animation: ${fadeIn} 1s ease-in-out;
+`;
+
+const Title = styled.h2`
+  font-size: 2.5rem;
+  color: ${({ selected }) => (selected ? "black" : "white")};
+  cursor: pointer;
+  transition: color 0.3s ease;
+
+  &:hover {
+    color: black;
+  }
+`;
+
+const DetailsCard = styled(Card)`
+  animation: ${fadeIn} 1s ease-in-out;
+  transition: transform 0.3s, box-shadow 0.3s;
+  border: none;
+
+  &:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+  }
+`;
+
+const DetailsCardHeader = styled(CardHeader)`
+  background: transparent;
+  border: none;
+  font-size: 3rem;
+  color: #ff8c00;
+  animation: ${bounce} 2s infinite;
+`;
+
+const DetailsCardBody = styled(CardBody)`
+  padding: 2rem;
+`;
+
+const DetailsCardTitle = styled(CardTitle)`
+  font-size: 1.5rem;
+  color: #333;
+  margin-bottom: 15px;
+`;
+
+const DetailsCardText = styled(CardText)`
+  font-size: 1rem;
+  color: #666;
+  transition: color 0.3s;
+
+  ${DetailsCard}:hover & {
+    color: blue;
+  }
+`;
+
 const ChooseUs = () => {
+  const [selectedTitle, setSelectedTitle] = useState("");
+
+  const handleTitleClick = (name) => {
+    setSelectedTitle(name);
+  };
+
   return (
-    <section className="mb-3 mt-5" id="ChooseUs">
+    <Section id="ChooseUs">
       <Container>
-        <div className="d-flex justify-content-center mt-5">
-          <h2 className="text-title head-title ">Why Choose Us</h2>
-        </div>
+        <Header>
+          <Title selected={selectedTitle === "Why Choose Us ?"} onClick={() => handleTitleClick("Why Choose Us ?")}>
+            Why Choose Us?
+          </Title>
+        </Header>
         <Row>
-          {details.map((item) => (
-            <Col
-              md={4}
-              className="d-flex justify-content-center mt-4"
-              key={item.name}
-            >
-              <Card className="card my-3" style={{ width: "20rem" }}>
-                <CardHeader className="text-center mt-2 text-danger ch">
+          {details.map((item, index) => (
+            <Col md={4} key={index}>
+              <DetailsCard className="details-card p-4 my-3 text-center">
+                <DetailsCardHeader className={`shape-${index + 1}`}>
                   <span className="icon-size">{item.src}</span>
-                </CardHeader>
-                <CardBody>
-                  <CardTitle tag="h4">{item.name}</CardTitle>
-                  <CardText className="text-secondary">{item.title}</CardText>
-                </CardBody>
-              </Card>
+                </DetailsCardHeader>
+                <DetailsCardBody>
+                  <DetailsCardTitle>{item.name}</DetailsCardTitle>
+                  <DetailsCardText>{item.title}</DetailsCardText>
+                </DetailsCardBody>
+              </DetailsCard>
             </Col>
           ))}
         </Row>
       </Container>
-    </section>
+    </Section>
   );
 };
 

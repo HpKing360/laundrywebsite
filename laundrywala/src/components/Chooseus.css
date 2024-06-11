@@ -1,0 +1,40 @@
+.details-card {
+    background-color: #fff;
+    border: none;
+    border-radius: 20px;
+    overflow: hidden;
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  .details-card:hover {
+    transform: scale(1.05);
+  }
+  
+  .shape-1 {
+    clip-path: polygon(0% 0%, 100% 0%, 75% 100%, 25% 100%);
+  }
+  
+  .shape-2 {
+    clip-path: polygon(50% 0%, 100% 15%, 100% 100%, 0% 100%, 0 15%);
+  }
+  
+  .shape-3 {
+    clip-path: polygon(0% 0%, 100% 0%, 100% 75%, 0% 100%);
+  }
+  
+  .shape-4 {
+    clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 80%);
+  }
+  
+  .shape-5 {
+    clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0 75%);
+  }
+  
+  .shape-6 {
+    clip-path: polygon(0% 0%, 100% 0%, 75% 100%, 0 100%);
+  }
+  
+  .icon-size {
+    font-size: 2rem;
+  }
+  
