@@ -717,13 +717,13 @@ const Order = () => {
                     }}
                   >
                     <option value="">Select Branch</option>
-                    <option value="Jamalkhan">Jamalkhan Branch</option>
-                    <option value="Agrabad">Agrabad Branch</option>
-                    <option value="Patharghata">Patharghata Branch</option>
-                    <option value="Chawkbazar">Chawkbazar Branch</option>
-                    <option value="Dewanhat">Dewanhat Branch</option>
-                    <option value="Halishahar">Halishahar Branch</option>
-                    <option value="Muradpur">Muradpur Branch</option>
+                    <option value="Tumble Dry">Tumble Dry</option>
+                    <option value="Laundrokart">Laundrokart</option>
+                    <option value="Clean Genie Express">Clean Genie Express</option>
+                    <option value="Coin Laundromart">Coin Laundromart</option>
+                    <option value="One wash">One wash</option>
+                    <option value="A1 laundry">A1 laundry</option>
+                    <option value="Instawash">Instawash</option>
                   </select>
                 </FormGroup>
                 <FormGroup>
@@ -827,7 +827,7 @@ const Order = () => {
                       onChange={(e) => setPayment(e.target.value)}
                       required
                     />
-                    Online payment (Bikash/Nagad){" "}
+                    Online payment {" "}
                     <span className="form-check-sign" />
                   </Label>
                 </FormGroup>

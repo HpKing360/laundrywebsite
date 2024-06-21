@@ -36,9 +36,8 @@ const items = [
 ];
 
 const Section = styled.section`
-
-background: linear-gradient(89.2deg, rgb(191, 241, 236) 22.3%, rgb(109, 192, 236) 84.1%);
-  padding: 50px 0;
+  background: linear-gradient(89.2deg, rgb(191, 241, 236) 22.3%, rgb(109, 192, 236) 84.1%);
+  padding: 100px 0;
   display: flex;
   min-height: 87vh;
 `;
@@ -96,52 +95,57 @@ const BubbleSide = styled(Bubble)`
     animation-duration: 15s;
   }
 `;
+
 const SlideText = styled.div`
   margin-top: 100px;
-  color: #fff;
-  text-align: left; /* Align text to the left */
+  color: white;
+  text-align: left;
 `;
 
 const SlideTitle = styled.h2`
   font-size: 2.5rem;
   font-weight: bold;
-  color: #fff;
+  color: black; /* Changed color to black */
   margin-bottom: 20px;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4); /* Add text shadow for a premium look */
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
   .text-title {
-    color: #E6E6FA;
+    color: yellow;
   }
 `;
 
 const SlideDescription = styled.p`
   font-size: 1.2rem;
   color: black;
-  padding-right: 20px; /* Add padding for better spacing */
+  padding-right: 20px;
+  font-family: 'Arial', sans-serif; /* Changed to a professional font style */
 `;
 
 const SlideButtonLink = styled(Link)`
-  text-decoration: none; /* Remove underline from link */
+  text-decoration: none;
 `;
 
 const SlideButton = styled(Button)`
-  background-color: blue; /* Dark blue color */
+background: linear-gradient(45deg, #007bff, #0056b3);
   border: none;
   border-radius: 5px;
   font-size: 1.2rem;
   font-weight: bold;
+  color: white;
+  padding: 10px 20px;
   margin: 20px auto 0;
   display: block;
+  cursor: pointer;
+  transition: background 0.3s ease-in-out;
 
   &:hover {
-    background-color: #004080; /* Slightly darker blue on hover */
-    transform: scale(1.05); /* Slightly enlarge the button on hover */
+    background: linear-gradient(45deg, #0056b3, #007bff);
   }
 `;
 
 const CarouselImage = styled.img`
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  max-height: 500px; /* Ensures all images are the same height */
+  max-height: 500px;
   object-fit: cover;
   width: 100%;
 `;

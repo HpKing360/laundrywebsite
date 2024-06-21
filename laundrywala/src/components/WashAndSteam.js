@@ -675,9 +675,7 @@ const WashAndSteam= () => {
                   Select Service
                 </DropdownToggle>
                 <DropdownMenu>
-                  <Link to="/WashAndFold" className="s">
-                    <DropdownItem className="sd">Wash & Fold</DropdownItem>
-                  </Link>
+                  
                   <Link to="/IronAndFold" className="s">
                     <DropdownItem className="sd">Iron & Fold</DropdownItem>
                   </Link>
@@ -722,7 +720,7 @@ const WashAndSteam= () => {
                           </ListItem>
                           <ListItem>
                             <Typography>
-                              <span className="price">₹ {item.price}</span> /
+                              <span className="price">Rs {item.price}</span> /
                               piece
                             </Typography>
                             <ListItemText secondary="" />

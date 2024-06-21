@@ -28,11 +28,11 @@ const Footer = () => {
       <Container>
         <Row className="py-3">
           <Col md={6} className="py-3">
-            <h4 className="text-title">LAUNDRYWALA Online Laundry Service</h4><br></br>
+            <h4 className="text-title">Spin Cycle Online Laundry Service</h4><br></br>
             <p>
               Email:{" "}
               <a href="mailto:laundrywala.support@gmail.com" style={{ color: "#bbb" }}>
-                laundrywala.support@gmail.com
+                spincycle.support@gmail.com
               </a>
             </p>
             <p>

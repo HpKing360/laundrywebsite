@@ -721,9 +721,7 @@ const EmergencyService = () => {
                   Select Service
                 </DropdownToggle>
                 <DropdownMenu>
-                  <Link to="/WashAndFold" className="s">
-                    <DropdownItem className="sd">Wash & Fold</DropdownItem>
-                  </Link>
+                  
                   <Link to="/IronAndFold" className="s">
                     <DropdownItem className="sd">Iron & Fold</DropdownItem>
                   </Link>
@@ -737,6 +735,9 @@ const EmergencyService = () => {
                   </Link>
                   <Link to="/WashAndIron" className="s">
                     <DropdownItem className="sd">Wash and Iron</DropdownItem>
+                  </Link>
+                  <Link to="/WashAndSteam" className="s">
+                    <DropdownItem className="sd">Wash and Steam</DropdownItem>
                   </Link>
                 </DropdownMenu>
               </Dropdown>
@@ -822,7 +823,7 @@ const EmergencyService = () => {
                           </ListItem>
                           <ListItem>
                             <Typography>
-                              <span className="price">৳ {item.price}</span> /
+                              <span className="price">Rs {item.price}</span> /
                               piece
                             </Typography>
                             <ListItemText secondary="" />

@@ -13,6 +13,9 @@ import {
 } from "reactstrap";
 import styled from "styled-components";
 
+// Import your background image (adjust path as necessary)
+import backgroundImage from "../images/1718893442214.jpg";
+
 const services = [
   {
     src: require("../images/wash-iron.jpeg"),
@@ -21,13 +24,7 @@ const services = [
       "All your regular wear garments will be washed, steam ironed and neatly packed for delivery.",
     link: "/WashAndIron",
   },
-  {
-    src: require("../images/wash-fold.jpg"),
-    name: "Wash & Fold",
-    title:
-      "Just in case you choose not to use our steam ironing services we will wash and fold them for you.",
-    link: "/WashAndFold",
-  },
+  
   {
     src: require("../images/iron-fold.jpg"),
     name: "Iron & Fold",
@@ -59,8 +56,9 @@ const services = [
 ];
 
 const Section = styled.section`
-background: linear-gradient(45deg, #000850 0%, #000320 100%), radial-gradient(100% 225% at 100% 0%, #FF6928 0%, #000000 100%), linear-gradient(225deg, #FF7A00 0%, #000000 100%), linear-gradient(135deg, #CDFFEB 10%, #CDFFEB 35%, #009F9D 35%, #009F9D 60%, #07456F 60%, #07456F 67%, #0F0A3C 67%, #0F0A3C 100%);
-background-blend-mode: screen, overlay, hard-light, normal;
+  background-image: url(${backgroundImage});
+  background-size: cover;
+  background-position: center;
   padding: 50px 0;
 `;
 
@@ -88,7 +86,7 @@ const ServiceCardBody = styled(CardBody)`
 `;
 
 const ServiceTitle = styled(CardTitle)`
-  color: #333;
+  color: ${({ selected }) => (selected ? "black" : "white")};
   font-size: 1.5rem;
   font-weight: bold;
   margin-bottom: 1rem;
@@ -100,14 +98,20 @@ const ServiceText = styled(CardText)`
 `;
 
 const ServiceButton = styled(Button)`
-  background-color: #007bff;
+  background: linear-gradient(45deg, #007bff, #0056b3);
   border: none;
   border-radius: 5px;
-  font-size: 1rem;
+  font-size: 1.2rem;
   font-weight: bold;
-  transition: background-color 0.3s ease-in-out;
+  color: white;
+  padding: 10px 20px;
+  margin: 20px auto 0;
+  display: block;
+  cursor: pointer;
+  transition: background 0.3s ease-in-out;
+
   &:hover {
-    background-color: #0056b3;
+    background: linear-gradient(45deg, #0056b3, #007bff);
   }
 `;
 
@@ -139,13 +143,13 @@ const ServiceOverlay = styled.div`
   font-weight: bold;
 `;
 
-const Service = ({ service }) => (
+const ServiceComponent = ({ service }) => (
   <Col md={4} className="d-flex justify-content-center mt-4">
     <ServiceCard>
       <ServiceImage src={service.src} top />
       <ServiceOverlay className="service-overlay">{service.name}</ServiceOverlay>
       <ServiceCardBody>
-        <ServiceTitle tag="h3">{service.name}</ServiceTitle>
+        <ServiceTitle tag="h3" selected={false}>{service.name}</ServiceTitle>
         <ServiceText>{service.title}</ServiceText>
         <Link to={service.link}>
           <ServiceButton color="primary">Select Service</ServiceButton>
@@ -163,14 +167,10 @@ const Services = () => (
       </div>
       <Row>
         {services.map((service, index) => (
-          <Service key={index} service={service} />
+          <ServiceComponent key={index} service={service} />
         ))}
       </Row>
-      <div className="d-flex justify-content-center py-4">
-        <Link to="/PriceList">
-          <ServiceButton>Price List</ServiceButton>
-        </Link>
-      </div>
+      
     </Container>
   </Section>
 );

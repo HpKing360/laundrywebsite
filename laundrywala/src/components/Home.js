@@ -10,9 +10,9 @@ const Home = () => {
   return (
     <>
       <Homeslideshow />
-      <Offers /> {/* Add the Offers section here */}
-      <Services />
       <OtherLaundryWebsites />
+      <Services />
+      <Offers /> 
       <ChooseUs />
       <About />
     </>

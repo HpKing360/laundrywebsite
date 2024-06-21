@@ -389,10 +389,10 @@ const WashAndIron = () => {
         <Container>
           <div className="row justify-content-between py-3">
             <div className="col-md-8">
-              <h2 className="text-title">Wash And Iron Service</h2>
+              <h2 className="text-title" >Wash And Iron Service</h2>
             </div>
             <div className="col-md-4">
-              <span className="mr-3">Want to go another service?</span>
+              <span className="mr-3" style={{ paddingTop: "100px" }}>Want to go another service?</span>
               <Dropdown className="btn-group">
                 <DropdownToggle
                   aria-expanded={false}
@@ -405,9 +405,7 @@ const WashAndIron = () => {
                   Select Service
                 </DropdownToggle>
                 <DropdownMenu>
-                  <Link to="/WashAndFold" className="s">
-                    <DropdownItem className="sd">Wash & Fold</DropdownItem>
-                  </Link>
+                  
                   <Link to="/IronAndFold" className="s">
                     <DropdownItem className="sd">Iron & Fold</DropdownItem>
                   </Link>
@@ -421,6 +419,9 @@ const WashAndIron = () => {
                   </Link>
                   <Link to="/WashAndIron" className="s">
                     <DropdownItem className="sd">Wash and Iron</DropdownItem>
+                  </Link>
+                  <Link to="/WashAndSteam" className="s">
+                    <DropdownItem className="sd">Wash and Steam</DropdownItem>
                   </Link>
                 </DropdownMenu>
               </Dropdown>
@@ -449,7 +450,7 @@ const WashAndIron = () => {
                           </ListItem>
                           <ListItem>
                             <Typography>
-                              <span className="price">৳ {item.price}</span> /
+                              <span className="price">Rs {item.price}</span> /
                               piece
                             </Typography>
                             <ListItemText secondary="" />

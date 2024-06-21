@@ -10,7 +10,7 @@ import Login from "./components/Login";
 import Navbar from "./components/Navbar";
 import Order from "./components/Order";
 import Services from "./components/Services";
-import WashAndFold from "./components/WashAndFold";
+// import WashAndFold from "./components/WashAndFold";
 import WashAndIron from "./components/WashAndIron";
 import WashAndSteam from "./components/WashAndSteam";
 import { CartProvider } from "react-use-cart";
@@ -27,8 +27,9 @@ import DeliveryProfilePic from "./components/DeliveryDashboard/ProfilePic";
 import DeliveryChangePwd from "./components/DeliveryDashboard/ChangePwd";
 import Map from "./components/map/Map";
 import ScrollToTop from "./components/ScrollToTop";
-import PriceList from "./components/PriceList";
 
+import CompanyDetails from './components/CompanyDetails';
+import OtherLaundryWebsites from './components/OtherLaundryWebsites';
 
 function App() {
   return (
@@ -42,7 +43,7 @@ function App() {
             <Route exact path="/services" element={<Services />} />
             <Route exact path="/login" element={<Login />} />
             <Route exact path="/WashAndIron" element={<WashAndIron />} />
-            <Route exact path="/WashAndFold" element={<WashAndFold />} />
+            {/* <Route exact path="/WashAndFold" element={<WashAndFold />} /> */}
             <Route exact path="/IronAndFold" element={<IronAndFold />} />
             <Route exact path="/DryCleaning" element={<DryCleaning />} />
             <Route
@@ -51,7 +52,7 @@ function App() {
               element={<EmergencyService />}
             />
             <Route exact path="/WashAndSteam" element={<WashAndSteam />} />
-            <Route path="/PriceList" element={<PriceList />} /> 
+            
 
             <Route exact path="/order" element={<Order />} />
             <Route exact path="/map" element={<Map />} />
@@ -90,6 +91,8 @@ function App() {
               path="/delivery/password"
               element={<DeliveryChangePwd />}
             />
+             <Route exact path="/other-laundry-websites" element={<OtherLaundryWebsites />} />
+             <Route exact path="/company-details" element={<CompanyDetails />} />
           </Routes>
           <Footer />
         </CartProvider>

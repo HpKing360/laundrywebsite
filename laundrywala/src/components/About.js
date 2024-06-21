@@ -140,13 +140,13 @@ const About = () => {
             <Col md={12}>
               <div>
                 <Paragraph>
-                  <Highlight>LaundryWala</Highlight> is an Online Laundry Platform with the latest technology in washing, dry cleaning, and laundry. Our services combine our expertise and experience acquired over a period of time to provide you with clean laundry in the shortest possible turnaround time. We have partnered with the top laundry experts of the country and provide you with free Pick-up and Delivery for your dirty laundry. With our Website, Mobile App, or Hotline Number, you can just schedule an order and we will take it from there!
+                  <Highlight>Spin Cycle</Highlight> is an Online Laundry Platform with the latest technology in washing, dry cleaning, and laundry. Our services combine our expertise and experience acquired over a period of time to provide you with clean laundry in the shortest possible turnaround time. We have partnered with the top laundry experts of the country and provide you with free Pick-up and Delivery for your dirty laundry. With our Website, Mobile App, or Hotline Number, you can just schedule an order and we will take it from there!
                 </Paragraph>
                 <Paragraph>
-                  Our mission is to make laundry convenient and hassle-free for our customers. Whether you're a busy professional, a student, or a homemaker, <Highlight>LaundryWala</Highlight> is here to take care of your laundry needs. We use state-of-the-art equipment and environmentally friendly practices to ensure the best results for your clothes while minimizing our impact on the environment.
+                  Our mission is to make laundry convenient and hassle-free for our customers. Whether you're a busy professional, a student, or a homemaker, <Highlight>Spin Cycle</Highlight> is here to take care of your laundry needs. We use state-of-the-art equipment and environmentally friendly practices to ensure the best results for your clothes while minimizing our impact on the environment.
                 </Paragraph>
                 <Paragraph>
-                  At <Highlight>LaundryWala</Highlight>, we are committed to providing exceptional service and customer satisfaction. Our friendly staff is always ready to assist you with any queries or special requests. With our easy-to-use platform, you can schedule your laundry pickup and delivery at your convenience, track the status of your order, and pay securely online.
+                  At <Highlight>Spin Cycle</Highlight>, we are committed to providing exceptional service and customer satisfaction. Our friendly staff is always ready to assist you with any queries or special requests. With our easy-to-use platform, you can schedule your laundry pickup and delivery at your convenience, track the status of your order, and pay securely online.
                 </Paragraph>
                 <Row>
                   <Col md={4}>

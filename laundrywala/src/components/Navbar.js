@@ -1,8 +1,106 @@
-import React from "react";
-
+import React, { useState } from "react";
 import { Link, NavLink } from "react-router-dom";
+import styled from "styled-components";
 
-export default function Navbar() {
+const NavbarContainer = styled.nav`
+  background: linear-gradient(89.2deg, rgb(191, 241, 236) 22.3%, rgb(109, 192, 236) 84.1%);
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+  padding: 0.5rem 1rem;
+  border: none; /* Remove border */
+  box-shadow: none; /* Remove box-shadow */
+`;
+
+const Logo = styled.img`
+  margin-left: 1rem;
+  height: 50px;
+`;
+
+const NavbarHeader = styled.div`
+  display: flex;
+  align-items: center;
+`;
+
+const NavbarToggler = styled.button`
+  border: none;
+  background: none;
+  cursor: pointer;
+  display: none;
+
+  &:focus {
+    outline: none;
+  }
+
+  @media (max-width: 768px) {
+    display: block;
+  }
+
+  .navbar-toggler-icon {
+    display: block;
+    width: 25px;
+    height: 2px;
+    background-color: #333;
+    margin: 5px 0;
+  }
+`;
+
+const NavbarCollapse = styled.div`
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+
+  @media (max-width: 768px) {
+    display: ${({ isOpen }) => (isOpen ? "block" : "none")};
+    width: 100%;
+    text-align: center;
+  }
+`;
+
+const NavList = styled.ul`
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+  }
+`;
+
+const NavItem = styled.li`
+  margin: 0 1rem;
+
+  @media (max-width: 768px) {
+    margin: 0.5rem 0;
+  }
+`;
+
+const NavAnchor = styled(NavLink)`
+  text-decoration: none;
+  color: #fff;
+  font-size: 1.2rem; /* Increase font size */
+  font-weight: bold;
+  padding: 0.5rem 1rem; /* Add padding for better clickability */
+  transition: color 0.3s, background-color 0.3s;
+
+  &.active {
+    color: #004494;
+  }
+
+  &:hover {
+    color: #004494;
+  }
+`;
+
+const Navbar = () => {
+  const [isOpen, setIsOpen] = useState(false);
+
+  const toggleNavbar = () => {
+    setIsOpen(!isOpen);
+  };
+
   const customer = localStorage.getItem("cToken");
   const delivery = localStorage.getItem("dToken");
 
@@ -13,6 +111,7 @@ export default function Navbar() {
     localStorage.removeItem("cName");
     window.location.href = "/";
   };
+
   // DELIVERY LOGOUT
   const deliveryLogout = () => {
     localStorage.removeItem("dToken");
@@ -21,132 +120,77 @@ export default function Navbar() {
   };
 
   return (
-    <>
-      <div className="container">
-        <header className="p-0 m-0">
-          <nav className="navbar navbar-expand-sm bg-whitesmoke navbar-EBEAD5 fixed-top">
-            <div className="navbar-header navbar-brand">
-              {/* <h2 className="mx-2 my-2">LAUNDRYWALA</h2> */}
-              <Link to="/">
-                <img
-                  src={"default/logo.png"}
-                  alt={"Spin Cycles"}
-                  className="ml-4"
-                />
-              </Link>
-            </div>
-            <button
-              className="navbar-toggler "
-              id="navbar-toggler"
-              type="button"
-              data-toggle="collapse"
-              data-target="#navbarTogglerDemo02"
-              aria-controls="navbarTogglerDemo02"
-              aria-expanded="false"
-              aria-label="Toggle navigation"
-            >
-              <span className="navbar-toggler-icon"></span>
-              <span className="navbar-toggler-icon"></span>
-              <span className="navbar-toggler-icon"></span>
-            </button>
-            <div className="collapse navbar-collapse" id="navbarTogglerDemo02">
-              <ul className="navbar-nav ml-auto">
-                <li className="nav-item ">
-                  <NavLink className="nav-link text-center " to="/">
-                    <span>
-                      <i className="fa fa-fw fa-home"></i>
-                    </span>{" "}
-                    Home
-                  </NavLink>
-                </li>
-                <li className="nav-item text-light text-center text-md-left mx-2 ">
-                  <NavLink className="nav-link " to="/services">
-                    <span>
-                      <i className="fa-solid fa-gear"></i>
-                    </span>{" "}
-                    Services
-                  </NavLink>
-                </li>
-                <li className="nav-item text-center text-md-left mx-2 ">
-                  <NavLink className="nav-link " to="/order">
-                    <span>
-                      <i className="fa-solid fa-cart-shopping"></i>
-                    </span>{" "}
-                    Order
-                  </NavLink>
-                </li>
-                <li className="nav-item text-center text-md-left mx-2 ">
-                  <NavLink className="nav-link " to="/map">
-                    <span>
-                      <i className="fa-solid fa-location-dot"></i>
-                    </span>{" "}
-                    Maps
-                  </NavLink>
-                </li>
-                {!customer ? (
-                  <li className="nav-item  text-center text-md-left mx-2">
-                    <NavLink className="nav-link " to="/login">
-                      <span>
-                        <i className="fa-solid fa-right-to-bracket"></i>
-                      </span>{" "}
-                      Sign In
-                    </NavLink>
-                  </li>
-                ) : (
-                  <>
-                    <li className="nav-item  text-center text-md-left mx-2">
-                      <NavLink className="nav-link " to="/customer">
-                        <span>
-                          <i className="fa-brands fa-dashcube"></i>
-                        </span>{" "}
-                        Dashboard
-                      </NavLink>
-                    </li>
-                    <li
-                      className="nav-item  text-center text-md-left mx-2"
-                      onClick={() => {
-                        customerLogout();
-                      }}
-                    >
-                      <NavLink className="nav-link " to="#">
-                        <span>
-                          <i className="fa-solid fa-right-from-bracket"></i>
-                        </span>{" "}
-                        Logout
-                      </NavLink>
-                    </li>
-                  </>
-                )}
-                {delivery && (
-                  <>
-                    <li className="nav-item  text-center text-md-left mx-2">
-                      <NavLink className="nav-link " to="/delivery">
-                        <span>
-                          <i className="fa-brands fa-dashcube"></i>
-                        </span>{" "}
-                        Dashboard
-                      </NavLink>
-                    </li>
-                    <li
-                      className="nav-item  text-center text-md-left mx-2"
-                      onClick={() => {
-                        deliveryLogout();
-                      }}
-                    >
-                      <NavLink className="nav-link " to="#">
-                        <span>
-                          <i className="fa-solid fa-right-from-bracket"></i>
-                        </span>{" "}
-                        Logout
-                      </NavLink>
-                    </li>
-                  </>
-                )}
-              </ul>
-            </div>
-          </nav>
-        </header>
-      </div>
-    </>
+    <NavbarContainer>
+      <NavbarHeader>
+        <Link to="/">
+          <Logo src={"default/logo.png"} alt={"Spin Cycles"} />
+        </Link>
+        <NavbarToggler onClick={toggleNavbar}>
+          <div className="navbar-toggler-icon"></div>
+          <div className="navbar-toggler-icon"></div>
+          <div className="navbar-toggler-icon"></div>
+        </NavbarToggler>
+      </NavbarHeader>
+      <NavbarCollapse isOpen={isOpen}>
+        <NavList>
+          <NavItem>
+            <NavAnchor to="/" activeClassName="active" onClick={toggleNavbar}>
+              Home
+            </NavAnchor>
+          </NavItem>
+          <NavItem>
+            <NavAnchor to="/services" activeClassName="active" onClick={toggleNavbar}>
+              Services
+            </NavAnchor>
+          </NavItem>
+          <NavItem>
+            <NavAnchor to="/order" activeClassName="active" onClick={toggleNavbar}>
+              Order
+            </NavAnchor>
+          </NavItem>
+          <NavItem>
+            <NavAnchor to="/map" activeClassName="active" onClick={toggleNavbar}>
+              Maps
+            </NavAnchor>
+          </NavItem>
+          {!customer ? (
+            <NavItem>
+              <NavAnchor to="/login" activeClassName="active" onClick={toggleNavbar}>
+                Sign In
+              </NavAnchor>
+            </NavItem>
+          ) : (
+            <>
+              <NavItem>
+                <NavAnchor to="/customer" activeClassName="active" onClick={toggleNavbar}>
+                  Dashboard
+                </NavAnchor>
+              </NavItem>
+              <NavItem onClick={customerLogout}>
+                <NavAnchor to="#" activeClassName="active" onClick={toggleNavbar}>
+                  Sign Out
+                </NavAnchor>
+              </NavItem>
+            </>
+          )}
+          {delivery && (
+            <>
+              <NavItem>
+                <NavAnchor to="/delivery" activeClassName="active" onClick={toggleNavbar}>
+                  Dashboard
+                </NavAnchor>
+              </NavItem>
+              <NavItem onClick={deliveryLogout}>
+                <NavAnchor to="#" activeClassName="active" onClick={toggleNavbar}>
+                  Sign Out
+                </NavAnchor>
+              </NavItem>
+            </>
+          )}
+        </NavList>
+      </NavbarCollapse>
+    </NavbarContainer>
   );
-}
+};
+
+export default Navbar;

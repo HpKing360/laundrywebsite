@@ -1,37 +1,39 @@
-import React, { useState } from 'react';
-import { Container, Row, Col, Card, CardBody, CardTitle, Button, Modal, ModalHeader, ModalBody } from 'reactstrap';
+import React from 'react';
+import { useNavigate } from 'react-router-dom';
+import { Container, Row, Col, Card, CardBody, CardTitle, Button, CardText, Badge } from 'reactstrap';
 import styled from 'styled-components';
+import backgroundImage from '../images/1718895639011.jpg';
 
 const Section = styled.section`
-background: #9CECFB;  /* fallback for old browsers */
-background: -webkit-linear-gradient(to right, #0052D4, #65C7F7, #9CECFB);  /* Chrome 10-25, Safari 5.1-6 */
-background: linear-gradient(to right, #0052D4, #65C7F7, #9CECFB); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-
+  background-image: url(${backgroundImage});
   padding: 50px 0;
 `;
 
 const CompanyCard = styled(Card)`
-  background: linear-gradient(89.2deg, rgb(191, 241, 236) 22.3%, rgb(109, 192, 236) 84.1%);
+  background-color: white;
   border: none;
   border-radius: 15px;
   overflow: hidden;
   margin-bottom: 20px;
   box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
-  transition: box-shadow 0.3s ease-in-out;
-
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+  position: relative;
   &:hover {
+    transform: translateY(-10px);
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
   }
 `;
 
 const CompanyCardBody = styled(CardBody)`
   text-align: center;
+  padding-top: 20px;
 `;
 
 const CompanyName = styled(CardTitle)`
   color: #333;
   font-size: 1.5rem;
   font-weight: bold;
+  margin-top: 20px; /* Ensure enough space from the tag */
 `;
 
 const FurtherDetailsButton = styled(Button)`
@@ -39,80 +41,98 @@ const FurtherDetailsButton = styled(Button)`
   border: none;
   font-weight: bold;
   margin-top: 10px;
-
   &:hover {
     background-color: #004494;
   }
 `;
 
-const PremiumModal = styled(Modal)`
-  .modal-content {
-    background: linear-gradient(109.5deg, rgb(255, 255, 255) 9.4%, rgb(240, 240, 240) 78.4%);
-    border-radius: 15px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+const Rating = styled.div`
+  color: #ffbf00;
+  font-size: 1.2rem;
+  margin: 5px 0;
+`;
+
+const Tag = styled(Badge)`
+  background-color: ${props => (props.type === 'best' ? '#ffbf00' : '#ff4d4d')}; /* Yellow for Best, Red for Popular */
+  color: #fff;
+  font-size: 0.9rem;
+  padding: 5px 10px;
+  border-radius: 5px;
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  z-index: 1;
+  transition: transform 0.3s ease-in-out;
+  &:hover {
+    transform: scale(1.1);
   }
 `;
 
-const ModalHeaderStyled = styled(ModalHeader)`
-  border-bottom: none;
-  font-size: 1.75rem;
-  font-weight: bold;
-  color: #333;
-`;
-
-const ModalBodyStyled = styled(ModalBody)`
-  padding: 2rem;
-  color: #666;
-  font-size: 1.2rem;
-  line-height: 1.5;
-`;
-
 const OtherLaundryWebsites = () => {
-  const [modal, setModal] = useState(false);
-  const [selectedCompany, setSelectedCompany] = useState(null);
-
-  const toggleModal = (company = null) => {
-    setSelectedCompany(company);
-    setModal(!modal);
-  };
+  const navigate = useNavigate();
 
   const companies = [
     {
       name: 'Tumble Dry (Online/Offline)',
-      description: 'Wash & Fold: ₹80/kg with packing. Providing services within 48 hrs.',
-      additional: 'Wash & Steam: ₹120 per kg'
+      description: 'Wash & Fold: ₹80/kg with packing. Providing services within 48 hrs. Wash & Steam: ₹120 per kg.',
+      location: 'Bellandur, Bangalore',
+      link: 'https://maps.app.goo.gl/zgtchEyzugZBU32UA',
+      rating: 4.5,
+      tag: 'best'
     },
     {
       name: 'LaundroKart.com (Online/Offline)',
-      description: 'Wash & Fold: ₹75/kg \n Pickup & Drop: ₹50',
-      additional: 'Wash & Iron: ₹99/kg',
+      description: 'Wash & Fold: ₹75/kg. Pickup & Drop: ₹50. Wash & Iron: ₹99/kg.',
+      location: 'Doddakannelli, Bangalore',
+      link: 'https://maps.app.goo.gl/g5ns7mWq2tbrGTEh8',
+      rating: 4.7,
+      tag: 'popular'
     },
     {
       name: 'Clean Genie Express Laundry (Offline)',
-      description: 'Wash & Fold: Minimum 3kg for ₹169. Additional ₹46/kg for more than 3kg.',
-      additional: 'Wash & Iron: ₹169 for 3kg. Ironing: ₹10 per cloth. Dry cleaning: Shirt/Pant ₹85, Blazer ₹200, Others ₹149. Pickup and drop free.',
+      description: 'Wash & Fold: Minimum 3kg for ₹169. Additional ₹46/kg for more than 3kg. Wash & Iron: ₹169 for 3kg. Ironing: ₹10 per cloth. Dry cleaning: Shirt/Pant ₹85, Blazer ₹200, Others ₹149.',
+      location: 'Whitefield, Bangalore',
+      link: 'https://maps.app.goo.gl/gHpYnQ5TvV15CYsX8',
+      rating: 4.3,
+      tag: ''
     },
     {
       name: 'Coin Laundromart',
       description: '0-6kg: ₹260, 6-12kg: ₹500',
-      additional: ''
+      location: 'Kasavanahalli Village, Munnekollal, Bangalore',
+      link: 'https://maps.app.goo.gl/9Khm2Xk2ZPXMnMEq5',
+      rating: 4.0,
+      tag: ''
     },
     {
       name: 'One Wash Laundry',
       description: 'Ironing, Wash & Fold, Delivery, Dry Cleaning, Laundry Pickup',
-      additional: ''
+      location: 'Aswath Nagar, Marathahalli, Bangalore',
+      link: 'https://maps.app.goo.gl/xcJ7eNb5NW1gr9Zh7',
+      rating: 4.4,
+      tag: ''
     },
     {
       name: 'A1 Laundry Service',
       description: 'Provide some related information here.',
-      additional: ''
+      location: 'Trinity school road, Marathahalli, Bangalore',
+      link: 'https://maps.app.goo.gl/zVkMGHFDEAwqhzpf6',
+      rating: 3.8,
+      tag: ''
     },
     {
       name: 'Instawash Laundry',
       description: 'Using online services for laundry.',
-      additional: ''
+      location: 'Marathahalli, Bangalore',
+      link: 'https://maps.app.goo.gl/Hz7ZKY3RTk6MEFU99',
+      rating: 4.2,
+      tag: ''
     }
   ];
+
+  const navigateToDetails = (company) => {
+    navigate('/company-details', { state: { company } });
+  };
 
   return (
     <Section>
@@ -122,9 +142,12 @@ const OtherLaundryWebsites = () => {
           {companies.map((company, index) => (
             <Col md={6} lg={4} key={index}>
               <CompanyCard>
+                {company.tag && <Tag type={company.tag}>{company.tag === 'best' ? 'Best' : 'Popular'}</Tag>}
                 <CompanyCardBody>
                   <CompanyName>{company.name}</CompanyName>
-                  <FurtherDetailsButton onClick={() => toggleModal(company)}>
+                  <CardText>{company.location}</CardText>
+                  <Rating>⭐ {company.rating}</Rating>
+                  <FurtherDetailsButton onClick={() => navigateToDetails(company)}>
                     Further Details
                   </FurtherDetailsButton>
                 </CompanyCardBody>
@@ -133,15 +156,6 @@ const OtherLaundryWebsites = () => {
           ))}
         </Row>
       </Container>
-      {selectedCompany && (
-        <PremiumModal isOpen={modal} toggle={toggleModal}>
-          <ModalHeaderStyled toggle={toggleModal}>{selectedCompany.name}</ModalHeaderStyled>
-          <ModalBodyStyled>
-            <p>{selectedCompany.description}</p>
-            <p>{selectedCompany.additional}</p>
-          </ModalBodyStyled>
-        </PremiumModal>
-      )}
     </Section>
   );
 };
